@@ -17,5 +17,18 @@ modules:
       - source: system
         destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
 
+  - type: rpm-ostree
+    repos:
+      - https://copr.fedorainfracloud.org/coprs/bieszczaders/kernel-cachyos-lto/repo/fedora-$(rpm -E %fedora)/bieszczaders-kernel-cachyos-fedora-lto-%OS_VERSION%.repo
+    install:
+      - kernel-cachyos-lto
+    remove:
+      - kernel
+      - kernel-core
+      - kernel-modules
+      - kernel-modules-core
+      - kernel-modules-extra
+      - kernel-uki-virt
+
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
 
